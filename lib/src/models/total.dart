@@ -26,6 +26,24 @@ class Total {
   /// Valor total pago.
   String? valorPago;
 
+  ///Valor ICMS
+  String? valorIcms;
+
+  ///Valor Frete
+  String? valorFrete;
+
+  ///Valor Pis
+  String? valorPis;
+
+  ///Valor Cofins
+  String? valorCofins;
+
+  ///ValorIpi
+  String? valorIpi;
+
+  ///Valor Substituicao Tributária
+  String? valorSt;
+
   /// Construtor da classe `Total`.
   ///
   /// ### Parâmetros:
@@ -35,14 +53,19 @@ class Total {
   /// - [desconto]: Valor do desconto aplicado.
   /// - [acrescimo]: Valor do acréscimo aplicado.
   /// - [valorPago]: Valor total pago.
-  Total({
-    this.valorTotal,
-    this.valorTotalIcms,
-    this.valorLei12741,
-    this.desconto,
-    this.acrescimo,
-    this.valorPago,
-  });
+  Total(
+      {this.valorTotal,
+      this.valorTotalIcms,
+      this.valorLei12741,
+      this.desconto,
+      this.acrescimo,
+      this.valorPago,
+      this.valorCofins,
+      this.valorFrete,
+      this.valorIcms,
+      this.valorPis,
+      this.valorIpi,
+      this.valorSt});
 
   /// Converte a instância atual em um mapa (`Map<String, dynamic>`).
   ///
@@ -63,6 +86,12 @@ class Total {
       'desconto': desconto,
       'acrescimo': acrescimo,
       'valorPago': valorPago,
+      'valorCofins': valorCofins,
+      'valorFrete': valorFrete,
+      'valorIcms': valorIcms,
+      'valorPis': valorPis,
+      'valorIpi': valorIpi,
+      'valorSt': valorSt
     };
   }
 
@@ -96,6 +125,12 @@ class Total {
       desconto: desconto,
       acrescimo: acrescimo,
       valorPago: map['vCFe'] ?? map['ICMSTot']?['vNF'] ?? '0.00',
+      valorCofins: map['ICMSTot']?['vCOFINS'] ?? '0.00',
+      valorFrete: map['ICMSTot']?['vFrete'] ?? '0.00',
+      valorIcms: map['ICMSTot']?['vICMS'] ?? '0.00',
+      valorPis: map['ICMSTot']?['vPIS'] ?? '0.00',
+      valorIpi: map['ICMSTot']?['vIPI'] ?? '0.00',
+      valorSt: map['ICMSTot']?['vSt'] ?? '0.00',
     );
   }
 
