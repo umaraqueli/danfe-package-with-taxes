@@ -300,11 +300,14 @@ class DanfePrinter implements IDanfePrinter {
           "Valor Liquido: ${DanfeUtils.formatMoneyMilhar(danfe?.dados?.cobr?.fat?.vLiq ?? '', modeda: 'pt_BR', simbolo: moeda)}",
           styles: const PosStyles(align: PosAlign.center));
       bytes += generator.hr();
-      bytes +=
-          generator.text("Duplicata: ${danfe?.dados?.cobr?.dup?.nDup ?? ''}");
       bytes += generator.text(
-          "Vencimento: ${DanfeUtils.formatDate(danfe?.dados?.cobr?.dup?.dVenc ?? '', dateOnly: true)}");
-      bytes += generator.text("Valor: ${danfe?.dados?.cobr?.dup?.nDup ?? ''}");
+          "Duplicatas: ${danfe?.dados?.cobr?.dup?.map((d) => d?.nDup).join(', ') ?? ''}");
+
+      bytes += generator.text(
+          "Vencimentos: ${danfe?.dados?.cobr?.dup?.map((d) => DanfeUtils.formatDate(d.dVenc ?? "", dateOnly: true)).join(', ') ?? ''}");
+
+      bytes += generator.text(
+          "Valores: ${danfe?.dados?.cobr?.dup?.map((d) => d?.vDup).join(', ') ?? ''}");
 
       bytes += generator.rawBytes([27, 97, 48]);
 
